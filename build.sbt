@@ -30,3 +30,19 @@ lazy val scallion = project
     ),
   )
 
+
+lazy val benchmarks = project
+  .in(file("benchmarks"))
+  .enablePlugins(JmhPlugin)
+  .settings(
+    name := "scallion-benchmarks",
+    scalaVersion := "2.12.8",
+    scalacOptions ++= Seq(
+      "-deprecation",
+      "-feature",
+      "-opt:_",
+    ),
+    skip in publish := true,
+  )
+  .dependsOn(scallion)
+
